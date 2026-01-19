@@ -328,7 +328,7 @@ st.sidebar.markdown(
     "- [Course Syllabus](https://docs.google.com/document/d/1yMcxM8_CX0ACe6Y2RytBK6yrty7UUoVgVCkEJZADTFM/edit?usp=sharing)"
 )
 st.sidebar.markdown(
-    "- [Installation Guide](https://github.com/kyunghyuncho/CSCI-UA-473-Fundamentals-of-MachineLearning-Spring-2026/blob/main/README.md)"
+    "- [Installation Guide](https://github.com/kyunghyuncho/CSCI-UA-473-Fundamentals-of-MachineLearning-Spring-2026/blob/main/docs/installation_guide.md)"
 )
 
 # ========================================================================
