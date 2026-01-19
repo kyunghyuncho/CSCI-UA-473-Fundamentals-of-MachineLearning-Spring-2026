@@ -223,8 +223,7 @@ st.markdown(
     """
 )
 
-# TODO: Lavender will add the link to CampusWire (once we confirm this is ok)
-st.link_button("Go to CampusWire Thread", "https://campuswire.com/TBD")
+st.link_button("Go to CampusWire Thread", "https://campuswire.com/c/GFC1A6E10/feed/7")
 
 # Confirmation
 if st.checkbox("I have replied to the thread with my screenshot"):
