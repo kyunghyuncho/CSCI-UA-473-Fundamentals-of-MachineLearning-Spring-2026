@@ -141,7 +141,7 @@ streamlit run app.py
 ```
 
 You should see this interface
-![success_ui.png](data/media/images/success_ui.png)
+![success_ui.png](../data/media/images/success_ui.png)
 
 Try Lab 0 by clicking "Lab 0 Trying Vibe Coding" (highlighted with red box) on the left sidebar.
 
