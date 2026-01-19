@@ -111,7 +111,7 @@ def display_math_foundation(file_path):
     # Check if file exists
     if os.path.exists(file_path):
         with st.expander("📚 Mathematical Foundations", expanded=False):
-            with open(file_path, "r") as f:
+            with open(file_path, "r", encoding="utf-8") as f:
                 content = f.read()
             st.markdown(content, unsafe_allow_html=True)
     else:
