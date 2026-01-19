@@ -219,7 +219,7 @@ streamlit run app.py
 The app will open in your browser at `http://localhost:8501`.
 
 **Navigation**:
-- Use the **sidebar** to select lessons (Lesson 1-7)
+- Use the **sidebar** to select lessons (Lesson 1-9 and Lab 0)
 - Use the **Dataset Selection** dropdown to switch between TMDB and Airbnb
 - Each lesson has multiple tabs for different activities
 
