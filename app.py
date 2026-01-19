@@ -2,7 +2,7 @@
 Machine Learning Course - Main Application Entry Point
 
 This is the homepage of the interactive ML course application that serves as the
-landing page and navigation hub for all 7 course lessons.
+landing page and navigation hub for all course lessons.
 
 What Students Learn Here:
 --------------------------
