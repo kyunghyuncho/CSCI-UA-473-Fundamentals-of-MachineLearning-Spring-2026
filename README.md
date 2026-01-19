@@ -1,4 +1,4 @@
-# Machine Learning Course - Interactive Repository
+# CSCI-UA-473-Fundamentals-of-MachineLearning-Spring-2026
 
 An interactive,hands-on machine learning course using real-world datasets. Learn ML concepts through visualization and experimentation with the TMDB Movies and NYC Airbnb datasets.
 
