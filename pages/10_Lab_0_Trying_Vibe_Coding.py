@@ -200,7 +200,7 @@ with col2:
             st.balloons()
             username = os.getenv("USER") or os.getenv("USERNAME") or "Unknown User"
             st.success(
-                f"🎉 Great job! You fixed the bug! The cart order is preserved. Verified by: {username}\n\nDate: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\nDir: {os.getcwd()}"
+                f"🎉 Great job! You fixed the bug! The cart order is preserved. Verified by: {username}\n\nDate: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
             )
         elif st.session_state["cart"] == [3, 5, 8, 10, 20]:
             st.error("⚠️ BUG DETECTED: The cart order was changed!")

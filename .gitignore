@@ -207,7 +207,6 @@ marimo/_lsp/
 __marimo__/
 
 # Mac files
-.DS_Store
 *.DS_Store
 
 # Data
