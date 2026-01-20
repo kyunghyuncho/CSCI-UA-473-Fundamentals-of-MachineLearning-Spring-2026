@@ -91,7 +91,7 @@ source scripts/lab0/setup_env.sh
 > In production settings, people often use stronger isolation tools like **Docker** or **enroot** (containers), which ship the entire kitchen (OS + libraries) along with the meal.
 
 
-If you ever messed up the environment, delete and restart by running the following command to delete the files associated with the virtual environment. Once this is done, you can make a new virtual environment with the first command (above). 
+If you ever mess up the environment, delete and restart by running the following command to delete the files associated with the virtual environment. Once this is done, you can make a new virtual environment with the first command (above). 
 ```bash
 rm -rf .venv
 ```
