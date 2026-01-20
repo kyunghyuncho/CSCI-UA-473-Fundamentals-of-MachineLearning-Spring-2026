@@ -103,7 +103,7 @@ source scripts/lab0/activate_env.sh
 
 ### Step 3: Install Dependencies
 
-Now we have created the virtual environment and given it a name. Next, we need to specify the packages we want to use when running code in this environment (these packages are called dependencies). To do this, we will use uv, which is a commonly used package manager. We have already provided a list of the required dependencies for the labs in the course in `pyproject.toml`. Run the following commands to install these packages in your virtual environment:
+Now that the virtual environment is created, we need to specify the packages we want to use when running code in this environment (these packages are called dependencies). To do this, we will use uv, which is a commonly used package manager. We have already provided a list of the required dependencies for the labs in the course in `pyproject.toml`. Run the following commands to install these packages in your virtual environment:
 
 ```bash
 uv sync
