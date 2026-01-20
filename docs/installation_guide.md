@@ -18,7 +18,7 @@ We use Git for version control. Git is a distributed version control system that
 - `git push`: Upload commits to GitHub.
 - `git pull`: Download the latest changes from GitHub.
 
-Now let's clone the course folder to laptop! Open a terminal and run the following commands. This will create a local copy of this github repository on your laptop, which you can edit to complete the labs. 
+Now let's clone the course folder to your laptop! Open a terminal and run the following commands. This will create a local copy of this GitHub repository on your laptop, which you can edit to complete the labs. 
 
 ```bash
 git clone https://github.com/kyunghyuncho/CSCI-UA-473-Fundamentals-of-MachineLearning-Spring-2026.git
