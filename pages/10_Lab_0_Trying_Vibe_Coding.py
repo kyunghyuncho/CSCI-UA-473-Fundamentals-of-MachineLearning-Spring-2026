@@ -12,6 +12,7 @@ import streamlit as st
 import torch
 
 from labs.lab0_trying_vibe_coding.problem import find_max_price
+from utils.security import safe_eval
 from utils.ui import display_footer
 
 # ========================================================================
@@ -298,7 +299,7 @@ if st.checkbox("I have replied to the thread with my screenshot"):
 
         if answer1:
             try:
-                result = eval(
+                result = safe_eval(
                     answer1,
                     {"torch": torch},
                     {"a": a, "b": b},
@@ -326,7 +327,7 @@ if st.checkbox("I have replied to the thread with my screenshot"):
             Create a square identity matrix of size `j × j`
             using broadcasting.
 
-            You may use `torch.arange(j)`.
+            You may use `torch.arange(j)` and Boolean outputs are ok.
 
             *Constraint*: No loops. No `torch.eye`. One line of code.
             """
@@ -343,7 +344,7 @@ if st.checkbox("I have replied to the thread with my screenshot"):
 
         if answer2:
             try:
-                result = eval(
+                result = safe_eval(
                     answer2,
                     {"torch": torch},
                     {"j": j},
