@@ -79,7 +79,7 @@ Campuswire [post](https://campuswire.com/c/GFC1A6E10/feed/2) by Kyunghyun:
 
 Some important notes for beginners:
 1. You might see green and red text that are semitransparent. Those are suggestions from the AI assistant (green for add and red for delete). You can ignore them for now. Reject them using the `esc` key (Antigravity) or `Cmd+shift+N` (Copilot). If you want to accept (try not to do it at this stage), use the `tab` key (Antigravity) or `Cmd+shift+Y` (Copilot).
-2. If you ever accidentally press accept or delete, don't panic. You can always revert the changes by undoing using `Cmd+Z` or running `git restore <filename>` (for any tracked files).
+2. If you ever accidentally press accept or delete, don't panic. You can always revert the changes by undoing using `Ctrl+Z` (Windows/Linux) or `Cmd+Z` (macOS) or running `git restore <filename>` (for any tracked files).
 
 ---
 
