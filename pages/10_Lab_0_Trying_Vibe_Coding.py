@@ -135,7 +135,7 @@ st.info(
 with st.expander("What are those Red and Green lines? (Click to learn)"):
     st.markdown(
         """
-        When Antigravity Agent proposes changes, it shows you a **Diff**:
+        When Antigravity/Copilot Agent proposes changes, it shows you a **Diff**:
         - :red[**Red lines**]: Code being **removed**.
         - :green[**Green lines**]: New code being **added**.
 
