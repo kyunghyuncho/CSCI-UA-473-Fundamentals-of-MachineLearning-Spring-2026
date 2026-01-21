@@ -15,7 +15,8 @@ import os
 
 import streamlit as st
 
-from utils.dataset_config import DATASETS
+# placeholder for dataset. TODO: stduents need to load datasets
+DATASETS = {}
 
 
 def display_footer():
