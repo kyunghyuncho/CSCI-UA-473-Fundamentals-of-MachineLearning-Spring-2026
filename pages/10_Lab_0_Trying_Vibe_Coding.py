@@ -253,6 +253,51 @@ if st.checkbox("I have replied to the thread with my screenshot"):
         """
     )
 
+    # Bonus Section
+    st.divider()
+    if "bonus_unlocked" not in st.session_state:
+        st.session_state["bonus_unlocked"] = False
+
+    if not st.session_state["bonus_unlocked"]:
+        if st.button("👑 I finished the lab early and I'm bored"):
+            st.session_state["bonus_unlocked"] = True
+            st.rerun()
+
+    if st.session_state["bonus_unlocked"]:
+        st.markdown("### 🧩 Bonus: The Tensor Puzzle")
+        st.markdown(
+            "Prove your vibe is matched by your math. Puzzle from [srush/Tensor-Puzzles](https://github.com/srush/Tensor-Puzzles)."
+        )
+
+        st.info(
+            """
+            **Puzzle**: Implement **Outer Product**.
+
+            Given two Tensors `a` of shape `(i)` and `b` of shape `(j)`, compute their outer product of shape `(i, j)` using **broadcasting**.
+
+            *Constraint*: No loops. No `torch.outer`. One line of code.
+            """
+        )
+
+        answer = st.text_input(
+            "Your Code (assume `a` and `b` exist):", placeholder="e.g., a[...] * b[...]"
+        )
+
+        if answer:
+            # Simple heuristic to verify broadcasting usage
+            if (
+                "None" in answer or "unsqueeze" in answer or "view" in answer
+            ) and "*" in answer:
+                st.balloons()
+                st.success("🎉 Nailed it! You are truly cracked.")
+                st.markdown("### 📸 Share your success")
+                st.write(
+                    "Take a screenshot of this page (with the balloons!) and share it to the **Bonus CampusWire thread**."
+                )
+            else:
+                st.warning(
+                    "Not quite. Hint: You need to align dimensions so they broadcast against each other (e.g. `(i, 1)` and `(1, j)`)."
+                )
 
 # ========================================================================
 # FOOTER
