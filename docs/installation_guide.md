@@ -80,7 +80,7 @@ Campuswire [post](https://campuswire.com/c/GFC1A6E10/feed/2) by Kyunghyun:
 Some important notes for beginners:
 1. You might see green and red ghost texts. Those are suggestions from the AI assistant (green for add and red for delete). You can ignore them for now.
 2. For in-line suggestions, reject them using the `esc` key and accept using the `tab` key. For Antigravity agent chat suggestion, accept using `Cmd + Enter` and reject using `Cmd + backspace`. For Copilot agent chat suggestion, accept using `Shift + Cmd + Y` and reject using the button or repeatedly press `Cmd + Z` (default cancel shortcut overlaps with opening new window).
-4. If you ever accidentally press accept or delete, don't panic. You can always revert the changes by undoing using `Cmd+Z` or running `git restore <filename>` (for any tracked files).
+3. If you ever accidentally press accept or delete, don't panic. You can always revert the changes by undoing using `Cmd+Z` or running `git restore <filename>` (for any tracked files).
 
 
 ---
