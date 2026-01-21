@@ -18,7 +18,7 @@ We use Git for version control. Git is a distributed version control system that
 - `git push`: Upload commits to GitHub.
 - `git pull`: Download the latest changes from GitHub.
 
-Now let's clone the course folder to your laptop! Open a terminal and run the following commands. This will create a local copy of this GitHub repository on your laptop, which you can edit to complete the labs. 
+Now let's clone the course folder to your laptop! Open a terminal and run the following commands. This will create a local copy of this GitHub repository on your laptop, which you can edit to complete the labs.
 
 ```bash
 git clone https://github.com/kyunghyuncho/CSCI-UA-473-Fundamentals-of-MachineLearning-Spring-2026.git
@@ -26,6 +26,8 @@ cd CSCI-UA-473-Fundamentals-of-MachineLearning-Spring-2026
 ```
 
 (Optional) Here is an interactive [course](https://learngitbranching.js.org/) if you want to learn more about Git.
+
+---
 
 ### Step 1: Download IDE
 
@@ -36,7 +38,7 @@ An **IDE** (Integrated Development Environment) unifies coding, debugging, and t
 **AI-Native IDEs**
 The standard has been **VS Code** with **GitHub Copilot**, but tools like **Cursor**, **Claude Code**, and **Antigravity** are evolving the concept. Most of these are **forks of VS Code**, meaning they support your favorite extensions but bake AI into the core for a smoother "**Vibe Coding**" experience compared to using AI as just a plugin.
 
-The doc will be focused on antigravity, but you can use either antigravity or VSCode (with copilot). Even if you have used one of these IDEs previously, be sure to read through the instructions to ensure you are able to access the appropriate educational credits. 
+The doc will be focused on antigravity, but you can use either antigravity or VSCode (with copilot). Even if you have used one of these IDEs previously, be sure to read through the instructions to ensure you are able to access the appropriate educational credits.
 
 #### Antigravity Guide
 
@@ -67,15 +69,19 @@ Campuswire [post](https://campuswire.com/c/GFC1A6E10/feed/2) by Kyunghyun:
 
 > https://code.visualstudio.com/
 
+---
+
 #### Getting started with AI-powered IDE
 
-1. Open the IDE and select "Open Folder" to open the `CSCI-UA-473-Fundamentals-of-MachineLearning-Spring-2026` folder (what you just cloned in step 0).
+1. Open the IDE and select "Open Folder" (antigravity) or "Open" to open the `CSCI-UA-473-Fundamentals-of-MachineLearning-Spring-2026` folder (what you just cloned in step 0).
 2. Open the terminal (shortcut: Ctrl + Shift + ` or move your mouse to the top of the screen and click **"Terminal" -> "New Terminal"**).
 3. Open the file `scripts/lab0/setup_env.sh`. Try to understand what it does. Do **NOT** run the script until you roughly understand what it is doing.
 
 Some important notes for beginners:
-1. You might see green and red text that are semitransparent. Those are suggestions from the AI assistant. You can ignore them for now. Reject them using the `esc` key. If you want to accept (try not to do it at this stage), use the `tab` key.
-2. If you ever accidentally press accept or delete, don't panic. You can always revert the changes by undoing using `Ctrl+Z` or running `git restore <filename>` (for any tracked files).
+1. You might see green and red text that are semitransparent. Those are suggestions from the AI assistant (green for add and red for delete). You can ignore them for now. Reject them using the `esc` key (Antigravity) or `Cmd+shift+N` (Copilot). If you want to accept (try not to do it at this stage), use the `tab` key (Antigravity) or `Cmd+shift+Y` (Copilot).
+2. If you ever accidentally press accept or delete, don't panic. You can always revert the changes by undoing using `Cmd+Z` or running `git restore <filename>` (for any tracked files).
+
+---
 
 ### Step 2: Create a Virtual Environment
 
@@ -86,12 +92,12 @@ Run the following script to set up the environment. Read the script to understan
 source scripts/lab0/setup_env.sh
 ```
 
-> **Why?** Think of a virtual environment like a **separate kitchen** for each meal you cook. In one kitchen (project), you might need specific ingredients (libraries) like `pytorch 2.0`, while another kitchen needs `pytorch 1.0`. By keeping them separate, you avoid mixing ingredients that don't taste good together! As a general rule, you should keep a separate virtual environment for each project or code-base. 
+> **Why?** Think of a virtual environment like a **separate kitchen** for each meal you cook. In one kitchen (project), you might need specific ingredients (libraries) like `pytorch 2.0`, while another kitchen needs `pytorch 1.0`. By keeping them separate, you avoid mixing ingredients that don't taste good together! As a general rule, you should keep a separate virtual environment for each project or code-base.
 >
 > In production settings, people often use stronger isolation tools like **Docker** or **enroot** (containers), which ship the entire kitchen (OS + libraries) along with the meal.
 
 
-If you ever mess up the environment, delete and restart by running the following command to delete the files associated with the virtual environment. Once this is done, you can make a new virtual environment with the first command (above). 
+If you ever mess up the environment, delete and restart by running the following command to delete the files associated with the virtual environment. Once this is done, you can make a new virtual environment with the first command (above).
 ```bash
 rm -rf .venv
 ```
@@ -100,6 +106,8 @@ Every time you open a project to start working, you need to select which environ
 ```bash
 source scripts/lab0/activate_env.sh
 ```
+
+---
 
 ### Step 3: Install Dependencies
 
@@ -133,6 +141,8 @@ Verify that the installation was successful by running:
 ```bash
 python scripts/lab0/verify_installation.py
 ```
+
+---
 
 ### Step 4: Launch the App
 

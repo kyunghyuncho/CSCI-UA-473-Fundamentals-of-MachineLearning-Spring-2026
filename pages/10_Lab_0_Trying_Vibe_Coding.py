@@ -126,6 +126,7 @@ st.info(
     2. Highlight the code.
     3. Press `Cmd + Shift + L` to ask Antigravity Agent to:
        > Carefully comment every line.
+    (You can also use Copilot Agent with `Cmd + Shift + I` if you prefer.)
     """
 )
 
@@ -164,6 +165,7 @@ st.info(
     2. Highlight the `find_max_price` function.
     3. Press `Cmd + Shift + L` to ask Antigravity Agent:
        > Why does this modify the input list? Fix it.
+    (You can also use Copilot Agent with `Cmd + Shift + I` if you prefer.)
     4. Apply the fix by saving the file.
     5. Reset the cart below (🔄) and try again (💰)!
     """
