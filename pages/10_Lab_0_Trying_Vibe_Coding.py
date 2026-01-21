@@ -9,6 +9,7 @@ import os
 from datetime import datetime
 
 import streamlit as st
+import torch
 
 from labs.lab0_trying_vibe_coding.problem import find_max_price
 from utils.ui import display_footer
@@ -264,40 +265,108 @@ if st.checkbox("I have replied to the thread with my screenshot"):
             st.rerun()
 
     if st.session_state["bonus_unlocked"]:
-        st.markdown("### 🧩 Bonus: The Tensor Puzzle")
+        st.markdown("### 🧩 Bonus: Tensor Puzzles")
         st.markdown(
-            "Prove your vibe is matched by your math. Puzzle from [srush/Tensor-Puzzles](https://github.com/srush/Tensor-Puzzles)."
+            "Prove your vibe is matched by your math. Puzzles from "
+            "[srush/Tensor-Puzzles](https://github.com/srush/Tensor-Puzzles)."
         )
 
+        # -----------------------
+        # Puzzle 1: Outer product
+        # -----------------------
         st.info(
             """
-            **Puzzle**: Implement **Outer Product**.
+            **Puzzle 1**: Implement **Outer Product**.
 
-            Given two Tensors `a` of shape `(i)` and `b` of shape `(j)`, compute their outer product of shape `(i, j)` using **broadcasting**.
+            Given two Tensors `a` of shape `(i)` and `b` of shape `(j)`,
+            compute their outer product of shape `(i, j)` using **broadcasting**.
 
             *Constraint*: No loops. No `torch.outer`. One line of code.
             """
         )
 
-        answer = st.text_input(
-            "Your Code (assume `a` and `b` exist):", placeholder="e.g., a[...] * b[...]"
+        # Test tensors
+        a = torch.randn(4)
+        b = torch.randn(5)
+        expected1 = a[:, None] * b[None, :]
+
+        answer1 = st.text_input(
+            "Your Code (assume `a` and `b` exist):",
+            placeholder="YOUR CODE HERE",
+            key="puzzle_1",
         )
 
-        if answer:
-            # Simple heuristic to verify broadcasting usage
-            if (
-                "None" in answer or "unsqueeze" in answer or "view" in answer
-            ) and "*" in answer:
-                st.balloons()
-                st.success("🎉 Nailed it! You are truly cracked.")
-                st.markdown("### 📸 Share your success")
-                st.write(
-                    "Take a screenshot of this page (with the balloons!) and share it to the **Bonus CampusWire thread**."
+        if answer1:
+            try:
+                result = eval(
+                    answer1,
+                    {"torch": torch},
+                    {"a": a, "b": b},
                 )
-            else:
-                st.warning(
-                    "Not quite. Hint: You need to align dimensions so they broadcast against each other (e.g. `(i, 1)` and `(1, j)`)."
+
+                if torch.allclose(result, expected1):
+                    st.success("✅ Correct!")
+                else:
+                    st.warning(
+                        "Output shape or values are incorrect. "
+                        "Hint: think `(i, 1)` times `(1, j)`."
+                    )
+            except Exception as e:
+                st.error(f"❌ Error running your code:\n\n{e}")
+
+        st.divider()
+
+        # -----------------------
+        # Puzzle 2: Identity
+        # -----------------------
+        st.info(
+            """
+            **Puzzle 2**: Implement **Identity Matrix**.
+
+            Create a square identity matrix of size `j × j`
+            using broadcasting.
+
+            You may use `torch.arange(j)`.
+
+            *Constraint*: No loops. No `torch.eye`. One line of code.
+            """
+        )
+
+        j = 6
+        expected2 = torch.eye(j)
+
+        answer2 = st.text_input(
+            "Your Code (assume `j` exists):",
+            placeholder="YOUR CODE HERE",
+            key="puzzle_2",
+        )
+
+        if answer2:
+            try:
+                result = eval(
+                    answer2,
+                    {"torch": torch},
+                    {"j": j},
                 )
+
+                # allow bool or float identity
+                if result.dtype == torch.bool:
+                    result = result.float()
+
+                if torch.equal(result, expected2):
+                    st.balloons()
+                    st.success("🎉 Double Cracked! You're ready for the big leagues.")
+                    st.markdown("### 📸 Share your success")
+                    st.write(
+                        "Take a screenshot of this"
+                        "and share it to the **Bonus CampusWire thread**. https://campuswire.com/c/GFC1A6E10/feed/9"
+                    )
+                else:
+                    st.warning(
+                        "Not quite. Hint: compare row indices to column indices."
+                    )
+            except Exception as e:
+                st.error(f"❌ Error running your code:\n\n{e}")
 
 # ========================================================================
 # FOOTER
