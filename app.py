@@ -245,46 +245,51 @@ Use the **sidebar** (← over there!) to navigate to lessons. Here's what you'll
 
 ---
 
-# ### 🚀 Getting Started
+### 🚀 Getting Started
 
-# 1. **Make sure you've processed the data** (see README.md):
-#    ```bash
-#    python process_data.py          # For TMDB Movies
-#    python process_airbnb.py        # For Airbnb Listings (optional)
-#    ```
+1. **Make sure you've processed the data** (see README.md):
+   ```bash
+   python process_data.py          # For TMDB Movies
+   python process_airbnb.py        # For Airbnb Listings (optional)
+   ```
 
-# 2. **Select a lesson from the sidebar** (← look left!)
+2. **Select a lesson from the sidebar** (← look left!)
 
-# 3. **Try both datasets** to see how the same techniques work on different data
+3. **Try both datasets** to see how the same techniques work on different data
 
-# 4. **Experiment!** Change hyperparameters, try different configurations, see what happens
+4. **Experiment!** Change hyperparameters, try different configurations, see what happens
 
-# ### 💡 Tips for Success
+### 💡 Tips for Success
 
-# - **Take your time**. Each lesson builds on previous ones.
-# - **Experiment freely**. You can't break anything - just reload the page!
-# - **Read the explanations**. We explain not just HOW but WHY things work.
-# - **Try both datasets**. Seeing the same technique on different data builds intuition.
-# - **Use the "Help" hover text** on controls to understand each parameter.
+- **Take your time**. Each lesson builds on previous ones.
+- **Experiment freely**. You can't break anything - just reload the page!
+- **Read the explanations**. We explain not just HOW but WHY things work.
+- **Try both datasets**. Seeing the same technique on different data builds intuition.
+- **Use the "Help" hover text** on controls to understand each parameter.
 
-# ### 📖 Need More Background?
+### 📖 Need More Background?
 
-# If you encounter unfamiliar concepts:
-# - Check the **README.md** for prerequisites and references
-# - Each lesson has detailed explanations in markdown sections
-# - Code comments explain technical details
-# - Try the **scripts/verify_*.py** scripts to test your understanding
+If you encounter unfamiliar concepts:
+- Check the **README.md** for prerequisites and references
+- Each lesson has detailed explanations in markdown sections
+- Code comments explain technical details
+- Try the **scripts/verify_*.py** scripts to test your understanding
 
-# ### ⚠️ Important Notes
+### ⚠️ Important Notes
 
-# - **First time?** Start with Lesson 1 - each lesson builds on previous concepts.
-# - **No data?** You'll see "Data not found" errors. Run the processing scripts first (see README).
-# - **Slow training?** Reduce epochs/batch size or use a smaller hidden layer.
-# - **Something broke?** Refresh the page. Streamlit state is ephemeral.
+- **First time?** Start with Lesson 1 - each lesson builds on previous concepts.
+- **No data?** You'll see "Data not found" errors. Run the processing scripts first (see README).
+- **Slow training?** Reduce epochs/batch size or use a smaller hidden layer.
+- **Something broke?** Refresh the page. Streamlit state is ephemeral.
 
-# ========================================================================
+---
+
+**Ready to start learning?** Select a lesson from the sidebar! 👈
+"""
+)
+
+
 # SIDEBAR GUIDANCE
-# ========================================================================
 # Streamlit's Multi-Page App Feature:
 # ------------------------------------
 # When you run app.py, Streamlit automatically:
@@ -306,12 +311,6 @@ Use the **sidebar** (← over there!) to navigate to lessons. Here's what you'll
 
 # Success message to guide new users to the navigation menu
 # The 👆 emoji visually points to where the lesson links appear
-
----
-
-**Ready to start learning?** Select a lesson from the sidebar! 👈
-"""
-)
 
 
 st.sidebar.success("👆 Select a lesson above to begin!")
