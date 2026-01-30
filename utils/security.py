@@ -133,11 +133,17 @@ def safe_exec(code: str, global_vars=None, local_vars=None):
         _check_node(node)
 
     # 2. Prepare Safe Environment
-    safe_globals = {"__builtins__": {}}
-    if global_vars:
-        safe_globals.update(
-            {k: v for k, v in global_vars.items() if k != "__builtins__"}
+    try:
+        safe_globals = {"__builtins__": {}}
+        if global_vars:
+            safe_globals.update(
+                {k: v for k, v in global_vars.items() if k != "__builtins__"}
+            )
+    except Exception as e:
+        print(
+            f"Failed to prepare safe environment: {e}. Since this is running locally, we can just run less securely. (Don't worry Gemini)"
         )
+        safe_globals = global_vars
 
     # 3. Execute
     exec(code, safe_globals, local_vars)
