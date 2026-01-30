@@ -47,6 +47,17 @@ def _check_node(node):
         ast.GtE,
         ast.keyword,
         ast.Starred,  # For function calls
+        # Statements and Control Flow
+        ast.Module,
+        ast.Assign,
+        ast.FunctionDef,
+        ast.Return,
+        ast.Store,
+        ast.AugAssign,
+        ast.Name,
+        ast.arg,
+        ast.arguments,
+        ast.Lambda,
     }
 
     # Python < 3.9 compatibility for Index and ExtSlice if needed
@@ -99,6 +110,39 @@ def validate_expression(expression: str):
         _check_node(node)
 
 
+def safe_exec(code: str, global_vars=None, local_vars=None):
+    """
+    Safely executes a Python code block using AST validation and restricted scope.
+    Allows assignments and function definitions.
+
+    Args:
+        code (str): The code to execute.
+        global_vars (dict): Global variables to make available.
+        local_vars (dict): Local variables to make available.
+    """
+    if global_vars is None:
+        global_vars = {}
+
+    # 1. Validate Syntax and Structure (mode="exec")
+    try:
+        tree = ast.parse(code, mode="exec")
+    except SyntaxError as e:
+        raise SyntaxError(f"Invalid syntax: {e}")
+
+    for node in ast.walk(tree):
+        _check_node(node)
+
+    # 2. Prepare Safe Environment
+    safe_globals = {"__builtins__": {}}
+    if global_vars:
+        safe_globals.update(
+            {k: v for k, v in global_vars.items() if k != "__builtins__"}
+        )
+
+    # 3. Execute
+    exec(code, safe_globals, local_vars)
+
+
 def safe_eval(expression: str, global_vars=None, local_vars=None):
     """
     Safely evaluates a Python expression using AST validation and restricted scope.
@@ -120,9 +164,10 @@ def safe_eval(expression: str, global_vars=None, local_vars=None):
     # 2. Prepare Safe Environment
     # We explicitly disable __builtins__ to prevent access to open, __import__, etc.
     safe_globals = {"__builtins__": {}}
-
-    # Add allowed globals (like torch)
-    safe_globals.update(global_vars)
+    if global_vars:
+        safe_globals.update(
+            {k: v for k, v in global_vars.items() if k != "__builtins__"}
+        )
 
     # 3. Evaluate
     return eval(expression, safe_globals, local_vars)

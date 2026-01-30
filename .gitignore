@@ -212,3 +212,4 @@ __marimo__/
 # Data
 data/processed/
 data/raw/
+dungeon_tensor_save.json
