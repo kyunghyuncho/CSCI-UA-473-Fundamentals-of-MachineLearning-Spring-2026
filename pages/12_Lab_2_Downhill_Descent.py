@@ -180,9 +180,8 @@ if "theta_arr" in st.session_state:
     theta_arr = st.session_state["theta_arr"]
 else:
     batch = st.session_state.get("batch", init_batch)
-    theta_arr = make_theta_array(
-        df, pt_idx, init_alpha, batch, init_theta, max_updates, pts
-    )
+    alpha = st.session_state.get("alpha", init_alpha)
+    theta_arr = make_theta_array(df, pt_idx, alpha, batch, init_theta, max_updates, pts)
     st.session_state["theta_arr"] = theta_arr
 
 st.title("Lab 2: Downhill Descent: An Optimization Adventure 🏔️")
