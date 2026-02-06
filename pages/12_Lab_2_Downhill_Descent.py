@@ -376,13 +376,13 @@ if st.session_state["lab_part"] == 1:
                 # Check q0_1 answer - should be 2x-6 or equivalent
                 answer_normalized = q0_1.strip().replace(" ", "").lower()
                 correct_q0_1 = any(
-                    variant in answer_normalized
+                    variant == answer_normalized
                     for variant in ["2w-6", "2(w-3)", "2*w-6", "2*(w-3)"]
                 )
 
                 # Check q0_2 answer
                 answer_q0_2 = q0_2.strip().replace(" ", "").lower()
-                correct_q0_2 = "10" in answer_q0_2 or "10" in answer_q0_2
+                correct_q0_2 = "10" == answer_q0_2  # or "10" in answer_q0_2
 
                 # Check q0_3 answer - should be Positive
                 correct_q0_3 = q0_3 == "Positive"
@@ -418,6 +418,7 @@ if st.session_state["lab_part"] == 1:
                     st.session_state["part0_completed"] = True
                     st.success("🎉 You're ready for the slopes!")
                 else:
+                    st.session_state["part0_completed"] = False
                     error_msg = "Not quite right. "
                     if not correct_q0_1:
                         error_msg += "Check your derivative calculation for question 1 (hint: use the chain rule). "
@@ -435,6 +436,7 @@ if st.session_state["lab_part"] == 1:
                         error_msg += "Check question 7 - the gradient is zero at the minimum of the function. "
                     st.error(error_msg)
             else:
+                st.session_state["part0_completed"] = False
                 st.error("Please answer all questions before submitting.")
 
     st.session_state["part1_questions_submitted"] = False
@@ -927,9 +929,6 @@ elif st.session_state["lab_part"] == 4:
         )
         part3["n_steps"] = n_steps_dw
 
-    # with col3:
-    #     st.info(f"**Global minima:** w₁ = ±1, w₂ = 0")
-
     # Starting point
     st.write("### Starting Point")
     col1, col2 = st.columns(2)
@@ -1133,18 +1132,31 @@ if st.session_state["lab_part"] == 2:
                 and q5
                 and q6.strip()
             ):
-                st.session_state["part1_completed"] = True
-                st.success("Great job! Part 3 unlocked.")
-                st.info(
-                    "**Key Insights:**\n\n"
-                    "- **Learning Rate = 0**: No updates occur—the parameters stay at initialization. The line doesn't move!\n"
-                    "- **Increasing Learning Rate**: Larger steps toward the minimum. Higher learning rates converge faster but risk overshooting or instability.\n"
-                    "- **Maximum Learning Rate**: Can cause divergence—the parameters oscillate wildly or explode instead of converging.\n"
-                    "- **Batch Size Trade-offs**: Larger batches → more stable gradients but slower updates per epoch. "
-                    "Smaller batches → noisier gradients but more frequent updates, which can help escape shallow local minima.\n"
-                    "- **The Balance**: The best hyperparameters balance convergence speed, stability, and computational efficiency!"
-                )
+                correct_q4 = q4 == "Increase learning rate"
+                correct_q5 = q5 == "Increase batch size"
+
+                if correct_q4 and correct_q5:
+                    st.session_state["part2_completed"] = True
+                    st.success("Great job! Part 3 unlocked.")
+                    st.info(
+                        "**Key Insights:**\n\n"
+                        "- **Learning Rate = 0**: No updates occur—the parameters stay at initialization. The line doesn't move!\n"
+                        "- **Increasing Learning Rate**: Larger steps toward the minimum. Higher learning rates converge faster but risk overshooting or instability.\n"
+                        "- **Maximum Learning Rate**: Can cause divergence—the parameters oscillate wildly or explode instead of converging.\n"
+                        "- **Batch Size Trade-offs**: Larger batches → more stable gradients but slower updates per epoch. "
+                        "Smaller batches → noisier gradients but more frequent updates, which can help escape shallow local minima.\n"
+                        "- **The Balance**: The best hyperparameters balance convergence speed, stability, and computational efficiency!"
+                    )
+                else:
+                    st.session_state["part2_completed"] = False
+                    error_msg = "Not quite right. "
+                    if not correct_q4:
+                        error_msg += "Check question 4 (learning rate). "
+                    if not correct_q5:
+                        error_msg += "Check question 5 (batch size). "
+                    st.error(error_msg)
             else:
+                st.session_state["part2_completed"] = False
                 st.error("Please answer all questions before submitting.")
 
     st.session_state["part2_questions_submitted"] = False
@@ -1213,6 +1225,7 @@ elif st.session_state["lab_part"] == 3:
             stash_form_keys(["q1_p2", "q2_p2", "q3_p2"])
             # Check if model has been run
             if "model_3d" not in st.session_state:
+                st.session_state["part2_completed"] = False
                 st.error("Please run the optimization first before submitting answers!")
             else:
                 model = st.session_state["model_3d"]
@@ -1231,11 +1244,13 @@ elif st.session_state["lab_part"] == 3:
                     st.session_state["part2_completed"] = True
                     st.success("Great job! Part 4 unlocked.")
                 elif correct_answers and not loss_below_3:
+                    st.session_state["part2_completed"] = False
                     st.warning(
                         f"Your answers are correct, but your final loss is {final_loss:.4f}. "
                         "Try adjusting the learning rate or number of steps to get a loss below 3!"
                     )
                 else:
+                    st.session_state["part2_completed"] = False
                     st.error(
                         "Not quite. Try different learning rates and observe the patterns."
                     )
@@ -1308,6 +1323,7 @@ elif st.session_state["lab_part"] == 4:
                 st.session_state["part3_completed"] = True
                 st.success("Great work! Part 5 unlocked.")
             else:
+                st.session_state["part3_completed"] = False
                 if not correct_q1:
                     error_msg = "Not quite!"
                 elif not correct_q2:
@@ -1437,6 +1453,7 @@ elif st.session_state["lab_part"] == 5:
                     st.session_state["part4_completed"] = True
                     st.success("🎉 You've got it!")
                 else:
+                    st.session_state["part4_completed"] = False
                     # Check what's wrong
                     if (
                         "torch.nn.utils" not in answer_normalized
@@ -1456,6 +1473,7 @@ elif st.session_state["lab_part"] == 5:
                             "❌ Not quite right! Double check your syntax and try again. "
                         )
             else:
+                st.session_state["part4_completed"] = False
                 st.error("Please enter your solution.")
 
     st.session_state["part5_code_submitted"] = False
