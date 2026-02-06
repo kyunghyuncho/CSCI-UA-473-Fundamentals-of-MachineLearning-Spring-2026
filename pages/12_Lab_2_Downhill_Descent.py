@@ -96,6 +96,8 @@ if "part5_location_submitted" not in st.session_state:
     st.session_state["part5_location_submitted"] = False
 if "part5_questions_submitted" not in st.session_state:
     st.session_state["part5_questions_submitted"] = False
+if "part5_code_correct" not in st.session_state:
+    st.session_state["part5_code_correct"] = False
 
 
 def restore_form_keys(keys):
@@ -1450,10 +1452,10 @@ elif st.session_state["lab_part"] == 5:
                 ]
 
                 if answer_normalized in normalized_patterns:
-                    st.session_state["part4_completed"] = True
+                    st.session_state["part5_code_correct"] = True
                     st.success("🎉 You've got it!")
                 else:
-                    st.session_state["part4_completed"] = False
+                    st.session_state["part5_code_correct"] = False
                     # Check what's wrong
                     if (
                         "torch.nn.utils" not in answer_normalized
@@ -1473,7 +1475,7 @@ elif st.session_state["lab_part"] == 5:
                             "❌ Not quite right! Double check your syntax and try again. "
                         )
             else:
-                st.session_state["part4_completed"] = False
+                st.session_state["part5_code_correct"] = False
                 st.error("Please enter your solution.")
 
     st.session_state["part5_code_submitted"] = False
@@ -1591,7 +1593,7 @@ elif st.session_state["lab_part"] == 5:
         if submitted:
             stash_form_keys(["q5_max_norm", "q5_reflection"])
             # First check if the code was submitted correctly
-            if not st.session_state.get("part4_completed", False):
+            if not st.session_state.get("part5_code_correct", False):
                 st.error(
                     "⚠️ Please complete the gradient clipping code above before answering these questions!"
                 )
