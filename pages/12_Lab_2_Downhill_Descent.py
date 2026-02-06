@@ -476,7 +476,7 @@ elif st.session_state["lab_part"] == 2:
             color=alt.Color(
                 "color:N",
                 legend=None,
-                scale=alt.Scale(domain=[0, 1], range=["white", "white"]),
+                scale=alt.Scale(domain=[0, 1], range=["#B0B0B0", "#B0B0B0"]),
             ),
         )
     )
@@ -703,7 +703,7 @@ elif st.session_state["lab_part"] == 3:
                     mode="text",
                     text=[f"w{idx}"],
                     textposition="top center",
-                    textfont=dict(size=10, color="white"),
+                    textfont=dict(size=10, color="#B0B0B0"),
                     showlegend=False,
                 )
             )
@@ -742,7 +742,7 @@ def update_charts_part1(step):
     df.loc[pt_idx[step * batch : (step + 1) * batch], "color"] = 1
 
     w0, w1 = theta_arr[step]
-    chart1b = draw_line((w0, w1), [xmin, xmax], color="white")
+    chart1b = draw_line((w0, w1), [xmin, xmax], color="#B0B0B0")
 
     title_container.markdown(
         (
@@ -767,7 +767,7 @@ def update_charts_part1(step):
 
     chart_theta = (
         alt.Chart(df_theta.loc[:step])
-        .mark_circle(color="white")
+        .mark_circle(color="#B0B0B0")
         .encode(
             x=alt.X(
                 "w0",
@@ -803,7 +803,7 @@ def update_charts_part1(step):
             shape="circle",
             size=180,
             filled=False,
-            stroke="white",
+            stroke="#B0B0B0",
             strokeWidth=2,
         )
         .encode(
@@ -817,7 +817,7 @@ def update_charts_part1(step):
         .mark_point(
             shape="circle",
             size=40,
-            color="white",
+            color="#B0B0B0",
         )
         .encode(
             x="w0",
@@ -1013,7 +1013,7 @@ elif st.session_state["lab_part"] == 4:
                     size=10,
                     color="red",
                     symbol="diamond",
-                    line=dict(color="white", width=2),
+                    line=dict(color="#B0B0B0", width=2),
                 ),
                 name="End",
             )
@@ -1032,7 +1032,7 @@ elif st.session_state["lab_part"] == 4:
                     mode="text",
                     text=[f"w{idx}"],
                     textposition="top center",
-                    textfont=dict(size=9, color="white"),
+                    textfont=dict(size=9, color="#B0B0B0"),
                     showlegend=False,
                 )
             )
@@ -1171,7 +1171,7 @@ if st.session_state["lab_part"] == 2:
             st.session_state["lab_part"] = 1
             st.rerun()
     with col2:
-        if st.session_state.get("part1_completed", False):
+        if st.session_state.get("part2_completed", False):
             if st.button(
                 "Continue to Part 3 →",
                 use_container_width=True,
@@ -1225,7 +1225,7 @@ elif st.session_state["lab_part"] == 3:
             stash_form_keys(["q1_p2", "q2_p2", "q3_p2"])
             # Check if model has been run
             if "model_3d" not in st.session_state:
-                st.session_state["part2_completed"] = False
+                st.session_state["part3_completed"] = False
                 st.error("Please run the optimization first before submitting answers!")
             else:
                 model = st.session_state["model_3d"]
@@ -1241,16 +1241,16 @@ elif st.session_state["lab_part"] == 3:
                 loss_below_3 = final_loss < 3
 
                 if correct_answers and loss_below_3:
-                    st.session_state["part2_completed"] = True
+                    st.session_state["part3_completed"] = True
                     st.success("Great job! Part 4 unlocked.")
                 elif correct_answers and not loss_below_3:
-                    st.session_state["part2_completed"] = False
+                    st.session_state["part3_completed"] = False
                     st.warning(
                         f"Your answers are correct, but your final loss is {final_loss:.4f}. "
                         "Try adjusting the learning rate or number of steps to get a loss below 3!"
                     )
                 else:
-                    st.session_state["part2_completed"] = False
+                    st.session_state["part3_completed"] = False
                     st.error(
                         "Not quite. Try different learning rates and observe the patterns."
                     )
@@ -1267,7 +1267,7 @@ elif st.session_state["lab_part"] == 3:
             st.session_state["lab_part"] = 2
             st.rerun()
     with col2:
-        if st.session_state.get("part2_completed", False):
+        if st.session_state.get("part3_completed", False):
             if st.button(
                 "Continue to Part 4 →",
                 use_container_width=True,
@@ -1320,10 +1320,10 @@ elif st.session_state["lab_part"] == 4:
             correct_q2 = q2_p4.strip() != ""
 
             if correct_q1 and correct_q2:
-                st.session_state["part3_completed"] = True
+                st.session_state["part4_completed"] = True
                 st.success("Great work! Part 5 unlocked.")
             else:
-                st.session_state["part3_completed"] = False
+                st.session_state["part4_completed"] = False
                 if not correct_q1:
                     error_msg = "Not quite!"
                 elif not correct_q2:
@@ -1344,7 +1344,7 @@ elif st.session_state["lab_part"] == 4:
             st.session_state["lab_part"] = 3
             st.rerun()
     with col2:
-        if st.session_state.get("part3_completed", False):
+        if st.session_state.get("part4_completed", False):
             if st.button("Part 5 →", use_container_width=True, key="continue_to_part5"):
                 st.session_state["lab_part"] = 5
                 st.rerun()
