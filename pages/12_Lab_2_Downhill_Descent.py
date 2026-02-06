@@ -86,7 +86,11 @@ if "form_answers" not in st.session_state:
 def restore_form_keys(keys):
     saved = st.session_state["form_answers"]
     for key in keys:
-        if key not in st.session_state and key in saved:
+        if key in saved and (
+            key not in st.session_state
+            or st.session_state.get(key) is None
+            or st.session_state.get(key) == ""
+        ):
             st.session_state[key] = saved[key]
 
 
