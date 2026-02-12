@@ -5,7 +5,6 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-from PIL import Image
 
 # Import checkers
 from labs.lab3_embeddings_retrieval.level_checks import (
@@ -15,7 +14,19 @@ from labs.lab3_embeddings_retrieval.level_checks import (
     check_step_4_similarity,
     check_step_5_knn,
 )
-from utils.image_embedding import TRANSFORMERS_AVAILABLE, get_image_embedder
+
+try:
+    pass
+
+    TRANSFORMERS_AVAILABLE = True
+except ImportError as e:
+    print(f"Warning: Failed to import transformers: {e}")
+    TRANSFORMERS_AVAILABLE = False
+except RuntimeError as e:
+    print(
+        f"Warning: Runtime error importing transformers (likely torchvision issue): {e}"
+    )
+    TRANSFORMERS_AVAILABLE = False
 
 # Hardcoded config to make this lab standalone
 TMDB_CONFIG = {
@@ -51,13 +62,7 @@ def render_embeddings_lab():
     """
     )
 
-    tab1, tab2 = st.tabs(["🛠️ Build It (Text)", "🖼️ Explore (Images)"])
-
-    with tab1:
-        render_text_coding_lab()
-
-    with tab2:
-        render_image_demo()
+    render_text_coding_lab()
 
 
 def render_text_coding_lab():
@@ -595,57 +600,6 @@ for idx in top_k_indices:
         except Exception as e:
             st.error(
                 f"Could not load TMDB dataset. Make sure you've run `process_data.py`. Error: {e}"
-            )
-
-
-def render_image_demo():
-    st.subheader("Comparing Modalities: Text vs Images")
-    st.markdown(
-        """
-    You've mastered text embeddings. But what about images?
-
-    We use a different model (**DINOv2**) that learned from images, not text.
-    Interestingly, it produces vectors of size **384** (half the size of our text vectors).
-    """
-    )
-
-    if not TRANSFORMERS_AVAILABLE:
-        st.warning(
-            "Transformers library not available. Please install it to use this demo."
-        )
-        return
-
-    st.write("### Upload an Image")
-    uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
-
-    if uploaded_file:
-        image = Image.open(uploaded_file).convert("RGB")
-        st.image(image, width=300)
-
-        if st.button("Generate Image Embedding"):
-            with st.spinner("Processing image..."):
-                embedder = get_image_embedder()
-                vec = embedder.embed(image)
-
-            st.write(f"**Vector Shape:** {vec.shape}")
-
-            # Visualize
-            grid = vec.reshape(16, 24)  # 384 = 16*24
-            fig = px.imshow(
-                grid,
-                title="Image Vector Visualization (DINOv2)",
-                color_continuous_scale="Viridis",
-            )
-            st.plotly_chart(fig, use_container_width=True)
-
-            st.info(
-                """
-            **Key Takeaway:**
-            Even though this vector comes from pixels and the previous one came from words,
-            they are both just **lists of numbers**.
-
-            In Lesson 8, we will learn how to map them into the *same* space so we can search for images using text!
-            """
             )
 
 
